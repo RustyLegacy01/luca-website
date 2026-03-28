@@ -2,103 +2,130 @@
 
 import { motion } from "framer-motion";
 
-const skillCategories = [
+const skillModules = [
   {
-    title: "Programming",
-    skills: [
-      "Python",
-      "JavaScript",
-      "TypeScript",
-      "C++",
-      "SQL",
-      "HTML/CSS",
-    ],
+    category: "PROGRAMMING",
+    skills: ["Python", "JavaScript", "TypeScript", "C++", "SQL", "HTML/CSS"],
+    color: "var(--terminal-green)",
   },
   {
-    title: "Technologies",
-    skills: [
-      "React",
-      "Next.js",
-      "Node.js",
-      "Git",
-      "Linux",
-      "Docker",
-    ],
+    category: "TECH_STACK",
+    skills: ["React", "Next.js", "Node.js", "Git", "Linux", "Docker"],
+    color: "var(--terminal-cyan)",
   },
   {
-    title: "Finance & Trading",
-    skills: [
-      "Technical Analysis",
-      "Market Research",
-      "Risk Management",
-      "Portfolio Theory",
-      "Data Analysis",
-      "Excel/Google Sheets",
-    ],
+    category: "FINANCE",
+    skills: ["Technical Analysis", "Market Research", "Risk Mgmt", "Portfolio Theory", "Data Analysis", "Excel/GSheets"],
+    color: "var(--terminal-amber)",
   },
   {
-    title: "Soft Skills",
-    skills: [
-      "Problem Solving",
-      "Analytical Thinking",
-      "Communication",
-      "Teamwork",
-      "Time Management",
-      "Adaptability",
-    ],
+    category: "SYSTEM",
+    skills: ["Problem Solving", "Analysis", "Communication", "Teamwork", "Time Mgmt", "Adaptability"],
+    color: "var(--terminal-dim)",
   },
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
+    <section id="skills" className="py-24 sm:py-32 px-4 sm:px-8 lg:px-16">
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 1, y: 0 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mb-8"
         >
-          <p className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-3 tracking-wide uppercase">
-            Skills
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-            What I <span className="gradient-text">Bring to the Table</span>
-          </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            A diverse skill set spanning technical development and financial
-            analysis, built through self-study, projects, and hands-on experience.
-          </p>
+          <div className="flex items-center gap-2 text-[var(--terminal-dim)] text-sm mb-4">
+            <span>$</span>
+            <span className="typing">ls -la skills/</span>
+          </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {skillCategories.map((category, categoryIndex) => (
+        {/* Skills Grid */}
+        <div className="space-y-4">
+          {skillModules.map((module, index) => (
             <motion.div
-              key={category.title}
-              initial={{ opacity: 1, y: 0 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-              className="bg-white dark:bg-slate-800/30 rounded-2xl p-6 border border-slate-200 dark:border-slate-700/50"
+              key={module.category}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="terminal-box p-4"
             >
-              <h3 className="text-lg font-semibold mb-4 pb-3 border-b border-slate-200 dark:border-slate-700">
-                {category.title}
-              </h3>
-              <ul className="space-y-2">
-                {category.skills.map((skill) => (
-                  <li
+              <div className="flex items-center gap-2 mb-3 pb-3 border-b border-[var(--terminal-dim)]/30">
+                <span className="text-[var(--terminal-dim)]">drwxr-xr-x</span>
+                <span className="text-[var(--terminal-amber)]">luca</span>
+                <span className="text-[var(--terminal-dim)]">users</span>
+                <span className="text-[var(--terminal-cyan)]">4096</span>
+                <span className="text-[var(--terminal-dim)]">Mar 28 10:47</span>
+                <span style={{ color: module.color }} className="ml-2 font-bold">
+                  {module.category}/
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {module.skills.map((skill, skillIndex) => (
+                  <motion.div
                     key={skill}
-                    className="flex items-center gap-2 text-slate-600 dark:text-slate-400"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 + skillIndex * 0.05 }}
+                    className="flex items-center gap-2 text-sm group cursor-default"
                   >
-                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
-                    {skill}
-                  </li>
+                    <span style={{ color: module.color }} className="opacity-50 group-hover:opacity-100">
+                      ›
+                    </span>
+                    <span className="text-[var(--terminal-dim)] group-hover:text-[var(--foreground)] transition-colors">
+                      {skill}
+                    </span>
+                  </motion.div>
                 ))}
-              </ul>
+              </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Progress Bars */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="mt-8 terminal-box p-6"
+        >
+          <div className="flex items-center gap-2 mb-4 text-[var(--terminal-dim)] text-sm">
+            <span>$</span>
+            <span>top</span>
+          </div>
+
+          <div className="space-y-4 font-mono text-xs">
+            {[
+              { name: "Coding", value: 85, color: "var(--terminal-green)" },
+              { name: "Analysis", value: 78, color: "var(--terminal-cyan)" },
+              { name: "Trading", value: 70, color: "var(--terminal-amber)" },
+              { name: "Learning", value: 95, color: "var(--terminal-dim)" },
+            ].map((stat) => (
+              <div key={stat.name}>
+                <div className="flex justify-between mb-1">
+                  <span style={{ color: stat.color }}>{stat.name}</span>
+                  <span className="text-[var(--terminal-dim)]">{stat.value}%</span>
+                </div>
+                <div className="h-2 bg-[var(--terminal-dark)] rounded-sm overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${stat.value}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.5 }}
+                    className="h-full rounded-sm"
+                    style={{ backgroundColor: stat.color }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,80 +1,162 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Code2, TrendingUp, GraduationCap, Lightbulb } from "lucide-react";
 
-const highlights = [
+const aboutData = [
   {
-    icon: Code2,
-    title: "Computer Science",
-    description:
-      "Building with modern technologies. Passionate about software engineering, algorithms, and creating efficient solutions.",
+    key: "ROLE",
+    value: "CS & Economics Student",
+    color: "var(--terminal-green)",
   },
   {
-    icon: TrendingUp,
-    title: "Trading & Finance",
-    description:
-      "Active interest in financial markets, trading strategies, and quantitative analysis. Always analyzing trends and opportunities.",
+    key: "FOCUS",
+    value: "[Technology, Markets, Trading]",
+    color: "var(--terminal-cyan)",
   },
   {
-    icon: GraduationCap,
-    title: "University Bound",
-    description:
-      "Heading to university next year to deepen my knowledge in CS and Economics. Excited for the journey ahead.",
+    key: "STATUS",
+    value: "University-bound // Building the future",
+    color: "var(--terminal-amber)",
   },
   {
-    icon: Lightbulb,
-    title: "Always Learning",
-    description:
-      "Curious by nature. Constantly exploring new technologies, market theories, and ways to combine them effectively.",
+    key: "MISSION",
+    value: "Bridging code and markets",
+    color: "var(--terminal-green)",
+  },
+];
+
+const modules = [
+  {
+    id: "CS_CORE",
+    name: "Computer Science",
+    desc: "Software engineering, algorithms, efficient solutions",
+    status: "ACTIVE",
+  },
+  {
+    id: "FIN_MOD",
+    name: "Trading & Finance",
+    desc: "Markets, strategies, quantitative analysis",
+    status: "ACTIVE",
+  },
+  {
+    id: "EDU_SYS",
+    name: "Education",
+    desc: "University next year. CS + Economics double down.",
+    status: "PENDING",
+  },
+  {
+    id: "LRN_ENG",
+    name: "Learning Engine",
+    desc: "Always exploring. Always curious.",
+    status: "RUNNING",
   },
 ];
 
 export default function About() {
+  const [visibleLines, setVisibleLines] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVisibleLines((prev) => {
+        if (prev >= aboutData.length + 2) {
+          clearInterval(interval);
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 200);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section
-      id="about"
-      className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-slate-50/50 dark:bg-slate-900/30"
-    >
-      <div className="max-w-6xl mx-auto">
+    <section id="about" className="py-24 sm:py-32 px-4 sm:px-8 lg:px-16">
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 1, y: 0 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mb-8"
         >
-          <p className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-3 tracking-wide uppercase">
-            About Me
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-            The Intersection of{" "}
-            <span className="gradient-text">Code & Markets</span>
-          </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            I&apos;m a student with a unique blend of interests. I believe that the
-            future belongs to those who understand both technology and economics
-            — and I&apos;m positioning myself at that intersection.
-          </p>
+          <div className="flex items-center gap-2 text-[var(--terminal-dim)] text-sm mb-4">
+            <span>$</span>
+            <span className="typing">cat about.txt</span>
+          </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {highlights.map((item, index) => (
+        {/* Profile Data */}
+        <div className="terminal-box p-6 mb-8">
+          <div className="flex items-center gap-2 mb-4 pb-4 border-b border-[var(--terminal-dim)]/30">
+            <span className="text-[var(--terminal-amber)]">FILE:</span>
+            <span className="text-[var(--terminal-cyan)]">profile.dat</span>
+            <span className="ml-auto text-[var(--terminal-dim)]">READ-ONLY</span>
+          </div>
+
+          <div className="font-mono text-sm space-y-2">
+            {aboutData.map((item, index) => (
+              <motion.div
+                key={item.key}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{
+                  opacity: visibleLines > index ? 1 : 0,
+                  x: visibleLines > index ? 0 : -20,
+                }}
+                transition={{ duration: 0.3 }}
+                className="flex gap-4"
+              >
+                <span className="text-[var(--terminal-dim)] w-20">{item.key}:</span>
+                <span style={{ color: item.color }}>{item.value}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Description */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="terminal-box-amber p-6 mb-8"
+        >
+          <div className="text-[var(--terminal-amber)] font-mono text-sm leading-relaxed">
+            <span className="text-[var(--terminal-dim)]">{"//"}</span> INTERSECTION_POINT
+            <br />
+            <br />
+            Student with a unique blend. The future belongs to those who
+            understand both technology and economics. Positioning at that
+            intersection.
+          </div>
+        </motion.div>
+
+        {/* Modules Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {modules.map((mod, index) => (
             <motion.div
-              key={item.title}
-              initial={{ opacity: 1, y: 0 }}
+              key={mod.id}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group p-6 sm:p-8 bg-white dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700/50 hover:border-blue-300 dark:hover:border-blue-700/50 transition-all duration-300 hover:shadow-lg dark:hover:shadow-slate-900/50"
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="terminal-box p-4 hover:border-[var(--terminal-cyan)] transition-all group"
             >
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                <item.icon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[var(--terminal-dim)] text-xs">{mod.id}</span>
+                <span
+                  className={`text-xs ${
+                    mod.status === "ACTIVE" || mod.status === "RUNNING"
+                      ? "text-[var(--terminal-green)]"
+                      : "text-[var(--terminal-amber)]"
+                  }`}
+                >
+                  [{mod.status}]
+                </span>
               </div>
-              <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.description}
-              </p>
+              <h3 className="text-[var(--terminal-green)] font-mono font-bold mb-1 group-hover:glow">
+                {mod.name}
+              </h3>
+              <p className="text-[var(--terminal-dim)] text-sm">{mod.desc}</p>
             </motion.div>
           ))}
         </div>

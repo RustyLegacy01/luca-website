@@ -1,15 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
 export const metadata: Metadata = {
-  title: "Luca | CS & Economics Student",
-  description: "Computer Science and Economics student passionate about trading, technology, and building the future.",
+  title: "luca@terminal:~$",
+  description: "CS & Economics Student | Bridging code and markets",
 };
 
 export default function RootLayout({
@@ -19,9 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body
-        className={`${inter.variable} font-sans antialiased bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300`}
-      >
+      <body className="crt antialiased grid-bg min-h-screen">
         {children}
       </body>
     </html>

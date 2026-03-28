@@ -1,6 +1,19 @@
-# Luca - Personal Website
+# Luca - Terminal Website
 
-A modern, clean personal website for Luca — a CS & Economics student interested in trading.
+A retro terminal-style personal website for Luca — a CS & Economics student interested in trading.
+
+![Terminal Theme](https://img.shields.io/badge/theme-retro%20terminal-green)
+![Next.js](https://img.shields.io/badge/Next.js-14-black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
+
+## 🖥️ Terminal Aesthetic
+
+- **CRT scanlines** and subtle flicker effects
+- **Terminal green** (`#00ff41`) primary color with amber/cyan accents
+- **Monospace fonts** throughout
+- **Typing animations** and boot sequences
+- **Glowing text** hover effects
+- **Grid background** pattern
 
 ## 🚀 Tech Stack
 
@@ -12,13 +25,10 @@ A modern, clean personal website for Luca — a CS & Economics student intereste
 
 ## ✨ Features
 
-- **Hero Section** — Name, tagline, and call-to-action
-- **About Section** — CS + Economics + Trading background
-- **Skills Section** — Programming, Technologies, Finance, Soft Skills
-- **Contact Section** — Email, GitHub, LinkedIn links
-- **Dark Mode** — Automatic based on system preference
+- **Boot Sequence** — BIOS-style startup animation on page load
+- **Typing Effects** — Command-line style text reveals
+- **Terminal UI** — File browser, `ls -la`, network status aesthetics
 - **Responsive Design** — Works on all devices
-- **Smooth Animations** — Framer Motion powered transitions
 - **Static Export** — Ready for deployment anywhere
 
 ## 🛠️ Getting Started
@@ -31,13 +41,8 @@ A modern, clean personal website for Luca — a CS & Economics student intereste
 ### Installation
 
 ```bash
-# Clone or navigate to the project
 cd luca-website
-
-# Install dependencies
 npm install
-
-# Run development server
 npm run dev
 ```
 
@@ -46,53 +51,23 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 ### Build for Production
 
 ```bash
-# Create static export
 npm run build
 ```
 
-The static site will be generated in the `dist/` folder, ready for deployment.
-
-## 📝 Customization
-
-### Personal Information
-
-Update the following files with Luca's actual information:
-
-- `src/components/Hero.tsx` — Name, tagline, social links
-- `src/components/About.tsx` — Bio and highlights
-- `src/components/Skills.tsx` — Skill lists
-- `src/components/Contact.tsx` — Email and social URLs
-- `src/app/layout.tsx` — Page metadata (title, description)
-
-### Styling
-
-- Colors and theme: `tailwind.config.ts`
-- Global styles: `src/app/globals.css`
-- Dark mode: Uses `prefers-color-scheme` media query
+The static site will be generated in the `dist/` folder.
 
 ## 🚀 Deployment
 
-### Static Hosting (Recommended)
-
-The site is configured for static export. Upload the `dist/` folder to:
-
+Upload the `dist/` folder to any static host:
 - Vercel
 - Netlify
 - GitHub Pages
 - Cloudflare Pages
-- Any static web host
-
-### Vercel (One-click)
-
-```bash
-npm i -g vercel
-vercel --prod
-```
 
 ## 📄 License
 
-MIT License — feel free to use this template for your own portfolio!
+MIT License
 
 ---
 
-Built with ❤️ for Luca
+Built with caffeine and code ☕

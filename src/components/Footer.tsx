@@ -1,57 +1,60 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-8 px-4 sm:px-6 lg:px-8 border-t border-slate-200 dark:border-slate-800">
-      <div className="max-w-6xl mx-auto">
+    <footer className="py-8 px-4 sm:px-8 lg:px-16 border-t border-[var(--terminal-dim)]/30">
+      <div className="max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col sm:flex-row justify-between items-center gap-4"
+          className="terminal-box p-4"
         >
-          <p className="text-sm text-slate-500 dark:text-slate-400">
-            © {currentYear} Luca. All rights reserved.
-          </p>
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 font-mono text-xs">
+            {/* Left: System Info */}
+            <div className="text-[var(--terminal-dim)]">
+              <span className="text-[var(--terminal-amber)]">SYS:</span> TERMINAL_v1.0.4
+              <span className="mx-2">|</span>
+              <span className="text-[var(--terminal-green)]">UPTIME:</span> {currentYear}
+            </div>
 
-          <div className="flex items-center gap-1 text-sm text-slate-500 dark:text-slate-400">
-            <span>Made with</span>
-            <Heart className="w-4 h-4 text-red-500 fill-red-500" />
-            <span>and lots of coffee</span>
+            {/* Center: Status */}
+            <div className="flex items-center gap-2">
+              <span className="text-[var(--terminal-dim)]">STATUS:</span>
+              <span className="text-[var(--terminal-green)]">● OPERATIONAL</span>
+            </div>
+
+            {/* Right: Navigation */}
+            <nav className="flex gap-4">
+              {["hero", "about", "skills", "contact"].map((section) => (
+                <a
+                  key={section}
+                  href={`#${section}`}
+                  className="text-[var(--terminal-dim)] hover:text-[var(--terminal-green)] transition-colors"
+                >
+                  [{section}]
+                </a>
+              ))}
+            </nav>
           </div>
 
-          <nav className="flex gap-6">
-            <a
-              href="#hero"
-              className="text-sm text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-            >
-              Home
-            </a>
-            <a
-              href="#about"
-              className="text-sm text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-            >
-              About
-            </a>
-            <a
-              href="#skills"
-              className="text-sm text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-            >
-              Skills
-            </a>
-            <a
-              href="#contact"
-              className="text-sm text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-            >
-              Contact
-            </a>
-          </nav>
+          {/* Bottom Bar */}
+          <div className="mt-4 pt-4 border-t border-[var(--terminal-dim)]/30 flex flex-col sm:flex-row justify-between items-center gap-2 text-[var(--terminal-dim)] text-xs">
+            <div>
+              <span className="text-[var(--terminal-cyan)]">luca@terminal</span>
+              <span>:</span>
+              <span className="text-[var(--terminal-amber)]">~</span>
+              <span>$</span>{" "}
+              <span className="text-[var(--terminal-green)]">echo &quot;Thanks for visiting&quot;</span>
+            </div>
+            <div className="text-[var(--terminal-dim)]/50">
+              {"// Built with caffeine and code"}
+            </div>
+          </div>
         </motion.div>
       </div>
     </footer>
