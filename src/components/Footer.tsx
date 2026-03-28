@@ -6,7 +6,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-8 px-4 sm:px-8 lg:px-16 border-t border-[var(--terminal-dim)]/30">
+    <footer className="py-8 px-4 sm:px-8 lg:px-16" style={{ borderTop: "1px solid #1a331a" }}>
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0 }}
@@ -14,27 +14,24 @@ export default function Footer() {
           viewport={{ once: true }}
           className="terminal-box p-4"
         >
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 font-mono text-xs">
-            {/* Left: System Info */}
-            <div className="text-[var(--terminal-dim)]">
-              <span className="text-[var(--terminal-amber)]">SYS:</span> TERMINAL_v1.0.4
-              <span className="mx-2">|</span>
-              <span className="text-[var(--terminal-green)]">UPTIME:</span> {currentYear}
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4" style={{ fontFamily: "monospace", fontSize: "0.75rem" }}>
+            <div style={{ color: "#66ff66" }}>
+              <span style={{ color: "#ffcc00" }}>SYS:</span> TERMINAL_v1.0.4
+              <span style={{ margin: "0 0.5rem" }}>|</span>
+              <span style={{ color: "#00ff41" }}>UPTIME:</span> {currentYear}
             </div>
 
-            {/* Center: Status */}
-            <div className="flex items-center gap-2">
-              <span className="text-[var(--terminal-dim)]">STATUS:</span>
-              <span className="text-[var(--terminal-green)]">● OPERATIONAL</span>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <span style={{ color: "#66ff66" }}>STATUS:</span>
+              <span style={{ color: "#00ff41" }}>● OPERATIONAL</span>
             </div>
 
-            {/* Right: Navigation */}
-            <nav className="flex gap-4">
+            <nav style={{ display: "flex", gap: "1rem" }}>
               {["hero", "about", "skills", "contact"].map((section) => (
                 <a
                   key={section}
                   href={`#${section}`}
-                  className="text-[var(--terminal-dim)] hover:text-[var(--terminal-green)] transition-colors"
+                  style={{ color: "#66ff66", textDecoration: "none" }}
                 >
                   [{section}]
                 </a>
@@ -42,17 +39,18 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Bottom Bar */}
-          <div className="mt-4 pt-4 border-t border-[var(--terminal-dim)]/30 flex flex-col sm:flex-row justify-between items-center gap-2 text-[var(--terminal-dim)] text-xs">
-            <div>
-              <span className="text-[var(--terminal-cyan)]">luca@terminal</span>
-              <span>:</span>
-              <span className="text-[var(--terminal-amber)]">~</span>
-              <span>$</span>{" "}
-              <span className="text-[var(--terminal-green)]">echo &quot;Thanks for visiting&quot;</span>
-            </div>
-            <div className="text-[var(--terminal-dim)]/50">
-              {"// Built with caffeine and code"}
+          <div className="mt-4 pt-4" style={{ borderTop: "1px solid #1a331a", fontFamily: "monospace", fontSize: "0.75rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+              <div style={{ color: "#66ff66" }}>
+                <span style={{ color: "#00ffff" }}>luca@terminal</span>
+                <span>:</span>
+                <span style={{ color: "#ffcc00" }}>~</span>
+                <span>$</span>{" "}
+                <span style={{ color: "#00ff41" }}>echo &quot;Thanks for visiting&quot;</span>
+              </div>
+              <div style={{ color: "#449944" }}>
+                {"// Built with caffeine and code"}
+              </div>
             </div>
           </div>
         </motion.div>

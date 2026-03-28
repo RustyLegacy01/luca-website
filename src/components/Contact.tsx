@@ -4,64 +4,28 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 const contactMethods = [
-  {
-    protocol: "EMAIL",
-    address: "luca@example.com",
-    href: "mailto:luca@example.com",
-    status: "ONLINE",
-    latency: "<50ms",
-  },
-  {
-    protocol: "GITHUB",
-    address: "github.com/luca",
-    href: "https://github.com",
-    status: "ACTIVE",
-    latency: "24ms",
-  },
-  {
-    protocol: "LINKEDIN",
-    address: "linkedin.com/in/luca",
-    href: "https://linkedin.com",
-    status: "ONLINE",
-    latency: "32ms",
-  },
+  { protocol: "EMAIL", address: "luca@example.com", href: "mailto:luca@example.com", status: "ONLINE", latency: "<50ms" },
+  { protocol: "GITHUB", address: "github.com/luca", href: "https://github.com", status: "ACTIVE", latency: "24ms" },
+  { protocol: "LINKEDIN", address: "linkedin.com/in/luca", href: "https://linkedin.com", status: "ONLINE", latency: "32ms" },
 ];
 
 export default function Contact() {
   const [hoveredMethod, setHoveredMethod] = useState<string | null>(null);
-  const [commandOutput, setCommandOutput] = useState<string[]>([]);
-
-  const handleConnect = (method: string) => {
-    setCommandOutput((prev) => [
-      ...prev,
-      `> Establishing connection to ${method}...`,
-      `> Handshake successful`,
-      `> Connection established`,
-      `>`,
-    ]);
-  };
 
   return (
-    <section id="contact" className="py-24 sm:py-32 px-4 sm:px-8 lg:px-16">
+    <section id="contact" className="py-24 px-4 sm:px-8 lg:px-16" style={{ color: "#66ff66" }}>
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mb-8"
-        >
-          <div className="flex items-center gap-2 text-[var(--terminal-dim)] text-sm mb-4">
-            <span>$</span>
-            <span className="typing">./connect.sh --interactive</span>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-8">
+          <div style={{ color: "#66ff66", fontFamily: "monospace", fontSize: "0.875rem" }}>
+            <span>$ </span>
+            <span>./connect.sh</span>
           </div>
         </motion.div>
 
-        {/* Connection Status */}
         <div className="terminal-box p-6 mb-6">
-          <div className="flex items-center justify-between mb-4 pb-4 border-b border-[var(--terminal-dim)]/30">
-            <span className="text-[var(--terminal-amber)]">NETWORK STATUS</span>
-            <span className="text-[var(--terminal-green)]">● CONNECTED</span>
+          <div className="flex items-center justify-between mb-4 pb-4" style={{ borderBottom: "1px solid #1a331a" }}>
+            <span style={{ color: "#ffcc00" }}>NETWORK STATUS</span>
+            <span style={{ color: "#00ff41" }}>● CONNECTED</span>
           </div>
 
           <div className="space-y-3">
@@ -77,39 +41,37 @@ export default function Contact() {
                 transition={{ delay: index * 0.1 }}
                 onMouseEnter={() => setHoveredMethod(method.protocol)}
                 onMouseLeave={() => setHoveredMethod(null)}
-                onClick={() => handleConnect(method.protocol)}
-                className="flex items-center justify-between p-3 border border-[var(--terminal-dim)]/30 hover:border-[var(--terminal-green)] hover:bg-[var(--terminal-dark)]/30 transition-all group cursor-pointer"
+                style={{ border: "1px solid #1a331a", textDecoration: "none", display: "flex", padding: "0.75rem", alignItems: "center", justifyContent: "space-between" }}
               >
-                <div className="flex items-center gap-4">
-                  <span
-                    className={`text-xs px-2 py-1 rounded ${
-                      method.status === "ONLINE"
-                        ? "bg-[var(--terminal-green)]/20 text-[var(--terminal-green)]"
-                        : "bg-[var(--terminal-amber)]/20 text-[var(--terminal-amber)]"
-                    }`}
-                  >
+                <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                  <span style={{ 
+                    color: method.status === "ONLINE" ? "#00ff41" : "#ffcc00",
+                    fontSize: "0.75rem",
+                    padding: "0.25rem 0.5rem",
+                    border: `1px solid ${method.status === "ONLINE" ? "#00ff41" : "#ffcc00"}`,
+                    borderRadius: "2px"
+                  }}>
                     {method.status}
                   </span>
                   <div>
-                    <div className="text-[var(--terminal-cyan)] font-mono text-sm">
+                    <div style={{ color: "#00ffff", fontFamily: "monospace", fontSize: "0.875rem" }}>
                       {method.protocol}
                     </div>
-                    <div className="text-[var(--terminal-dim)] text-xs">
+                    <div style={{ color: "#66ff66", fontSize: "0.75rem" }}>
                       {method.address}
                     </div>
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="text-[var(--terminal-dim)] text-xs">
+                <div style={{ textAlign: "right" }}>
+                  <div style={{ color: "#66ff66", fontSize: "0.75rem" }}>
                     latency: {method.latency}
                   </div>
-                  <div
-                    className={`text-xs transition-opacity ${
-                      hoveredMethod === method.protocol
-                        ? "opacity-100 text-[var(--terminal-green)]"
-                        : "opacity-0"
-                    }`}
-                  >
+                  <div style={{ 
+                    color: "#00ff41", 
+                    fontSize: "0.75rem",
+                    opacity: hoveredMethod === method.protocol ? 1 : 0,
+                    transition: "opacity 0.2s"
+                  }}>
                     [CLICK TO CONNECT]
                   </div>
                 </div>
@@ -118,38 +80,6 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Terminal Output */}
-        {commandOutput.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            className="terminal-box p-4 mb-6 bg-[var(--terminal-dark)]/50"
-          >
-            <div className="font-mono text-xs space-y-1">
-              {commandOutput.map((line, index) => (
-                <div
-                  key={index}
-                  className={
-                    line.startsWith(">")
-                      ? "text-[var(--terminal-green)]"
-                      : "text-[var(--terminal-dim)]"
-                  }
-                >
-                  {line}
-                </div>
-              ))}
-              <div className="flex items-center gap-2 mt-2">
-                <span className="text-[var(--terminal-amber)]">luca@terminal</span>
-                <span className="text-[var(--terminal-dim)]">:</span>
-                <span className="text-[var(--terminal-cyan)]">~</span>
-                <span className="text-[var(--terminal-dim)]">$</span>
-                <span className="cursor-blink text-[var(--terminal-green)]" />
-              </div>
-            </div>
-          </motion.div>
-        )}
-
-        {/* CTA Box */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -157,22 +87,30 @@ export default function Contact() {
           transition={{ delay: 0.3 }}
           className="terminal-box-amber p-6"
         >
-          <div className="flex items-start gap-4">
-            <div className="text-[var(--terminal-amber)] text-2xl">⚡</div>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem" }}>
+            <div style={{ color: "#ffcc00", fontSize: "1.5rem" }}>⚡</div>
             <div>
-              <h3 className="text-[var(--terminal-amber)] font-mono font-bold mb-2 glow-amber">
+              <h3 style={{ color: "#ffcc00", fontFamily: "monospace", fontWeight: "bold", marginBottom: "0.5rem" }}>
                 READY FOR COLLABORATION
               </h3>
-              <p className="text-[var(--terminal-dim)] text-sm mb-4">
-                Open to internships, projects, and opportunities where I can apply
-                skills in CS and finance.
+              <p style={{ color: "#66ff66", fontSize: "0.875rem", marginBottom: "1rem" }}>
+                Open to internships, projects, and opportunities.
               </p>
               <a
                 href="mailto:luca@example.com"
-                className="inline-flex items-center gap-2 px-4 py-2 border border-[var(--terminal-amber)] text-[var(--terminal-amber)] hover:bg-[var(--terminal-amber)] hover:text-[var(--background)] transition-all text-sm"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  padding: "0.5rem 1rem",
+                  border: "1px solid #ffcc00",
+                  color: "#ffcc00",
+                  textDecoration: "none",
+                  fontSize: "0.875rem"
+                }}
               >
                 <span>$</span>
-                <span>send_email --priority=high</span>
+                <span>send_email</span>
               </a>
             </div>
           </div>

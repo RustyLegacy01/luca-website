@@ -15,28 +15,15 @@ export default function Navbar() {
   const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     const updateTime = () => {
       const now = new Date();
-      setCurrentTime(now.toLocaleTimeString("en-US", { 
-        hour12: false,
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit"
-      }));
+      setCurrentTime(now.toLocaleTimeString("en-US", { hour12: false, hour: "2-digit", minute: "2-digit", second: "2-digit" }));
     };
-
     window.addEventListener("scroll", handleScroll);
     updateTime();
     const interval = setInterval(updateTime, 1000);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearInterval(interval);
-    };
+    return () => { window.removeEventListener("scroll", handleScroll); clearInterval(interval); };
   }, []);
 
   return (
@@ -45,56 +32,34 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "terminal-box border-t-0 border-l-0 border-r-0"
-            : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 ${isScrolled ? "terminal-box border-t-0 border-l-0 border-r-0" : ""}`}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14 sm:h-16 font-mono text-sm">
-            {/* Logo */}
-            <a
-              href="#hero"
-              className="flex items-center gap-2 text-[var(--terminal-green)] glow"
-            >
-              <span className="text-[var(--terminal-amber)]">luca</span>
-              <span className="text-[var(--terminal-dim)]">@</span>
-              <span className="text-[var(--terminal-cyan)]">terminal</span>
-              <span className="text-[var(--terminal-dim)]">:~$</span>
+          <div className="flex items-center justify-between h-14 sm:h-16" style={{ fontFamily: "monospace", fontSize: "0.875rem" }}>
+            <a href="#hero" style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#00ff41", textDecoration: "none" }}>
+              <span style={{ color: "#ffcc00" }}>luca</span>
+              <span style={{ color: "#66ff66" }}>@</span>
+              <span style={{ color: "#00ffff" }}>terminal</span>
+              <span style={{ color: "#66ff66" }}>:~$</span>
             </a>
 
-            {/* Time Display */}
-            <div className="hidden sm:block text-[var(--terminal-dim)]">
+            <div style={{ color: "#66ff66" }} className="hidden sm:block">
               [{currentTime}]
             </div>
 
-            {/* Desktop Navigation */}
             <nav className="hidden sm:flex items-center gap-1">
               {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="px-3 py-1 text-[var(--terminal-dim)] hover:text-[var(--terminal-green)] hover:glow transition-all"
-                >
+                <a key={link.name} href={link.href} style={{ padding: "0.25rem 0.75rem", color: "#66ff66", textDecoration: "none" }}>
                   ./{link.name}
                 </a>
               ))}
-              <a
-                href="#contact"
-                className="ml-4 px-4 py-1 terminal-box hover:bg-[var(--terminal-green)] hover:text-[var(--background)] transition-all"
-              >
+              <a href="#contact" className="terminal-box" style={{ marginLeft: "1rem", padding: "0.25rem 1rem", color: "#66ff66", textDecoration: "none" }}>
                 ./connect
               </a>
             </nav>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="sm:hidden p-2 text-[var(--terminal-green)]"
-              aria-label="Toggle menu"
-            >
-              <span className="font-mono text-xs">
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} style={{ padding: "0.5rem", color: "#00ff41", background: "none", border: "none", cursor: "pointer" }} className="sm:hidden">
+              <span style={{ fontFamily: "monospace", fontSize: "0.75rem" }}>
                 {isMobileMenuOpen ? "[CLOSE]" : "[MENU]"}
               </span>
             </button>
@@ -102,38 +67,18 @@ export default function Navbar() {
         </div>
       </motion.header>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 sm:hidden"
-          >
-            <div
-              className="absolute inset-0 bg-[var(--background)]/90"
-              onClick={() => setIsMobileMenuOpen(false)}
-            />
-            <div className="absolute top-14 left-0 right-0 terminal-box m-4 p-4">
-              <nav className="flex flex-col gap-2 font-mono">
+          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.2 }} className="fixed inset-0 z-40 sm:hidden" style={{ top: "3.5rem" }}>
+            <div className="terminal-box m-4 p-4">
+              <nav style={{ display: "flex", flexDirection: "column", gap: "0.5rem", fontFamily: "monospace" }}>
                 {navLinks.map((link, index) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="px-4 py-3 text-[var(--terminal-dim)] hover:text-[var(--terminal-green)] hover:bg-[var(--terminal-dark)]/50 transition-all"
-                  >
-                    <span className="text-[var(--terminal-amber)]">{index + 1}.</span>{" "}
+                  <a key={link.name} href={link.href} onClick={() => setIsMobileMenuOpen(false)} style={{ padding: "0.75rem 1rem", color: "#66ff66", textDecoration: "none" }}>
+                    <span style={{ color: "#ffcc00" }}>{index + 1}.</span>{" "}
                     ./{link.name}
                   </a>
                 ))}
-                <a
-                  href="#contact"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="mt-2 px-4 py-3 text-center text-[var(--terminal-green)] border border-[var(--terminal-green)] hover:bg-[var(--terminal-green)] hover:text-[var(--background)] transition-all"
-                >
+                <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} style={{ marginTop: "0.5rem", padding: "0.75rem 1rem", textAlign: "center", color: "#00ff41", border: "1px solid #00ff41", textDecoration: "none" }}>
                   ./connect --now
                 </a>
               </nav>
