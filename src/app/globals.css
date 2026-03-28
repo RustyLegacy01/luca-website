@@ -6,10 +6,10 @@
   --background: #0a0a0a;
   --foreground: #00ff41;
   --terminal-green: #00ff41;
-  --terminal-dim: #00aa2a;
-  --terminal-dark: #003300;
-  --terminal-amber: #ffb000;
-  --terminal-red: #ff3333;
+  --terminal-dim: #00cc33;
+  --terminal-dark: #001a00;
+  --terminal-amber: #ffcc00;
+  --terminal-red: #ff4444;
   --terminal-cyan: #00ffff;
 }
 
@@ -114,14 +114,14 @@ body {
 /* Terminal Box */
 .terminal-box {
   border: 1px solid var(--terminal-green);
-  background: rgba(0, 51, 0, 0.3);
+  background: rgba(0, 20, 0, 0.85);
   box-shadow: 0 0 10px rgba(0, 255, 65, 0.2), inset 0 0 20px rgba(0, 255, 65, 0.05);
 }
 
 .terminal-box-amber {
   border: 1px solid var(--terminal-amber);
-  background: rgba(51, 34, 0, 0.3);
-  box-shadow: 0 0 10px rgba(255, 176, 0, 0.2), inset 0 0 20px rgba(255, 176, 0, 0.05);
+  background: rgba(20, 15, 0, 0.85);
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.2), inset 0 0 20px rgba(255, 204, 0, 0.05);
 }
 
 /* Grid Background */
