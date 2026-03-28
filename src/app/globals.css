@@ -41,12 +41,24 @@ body {
   background: #0a120a;
   border: 1px solid #00ff41;
   box-shadow: 0 0 8px rgba(0,255,65,0.2);
+  transition: all 0.3s ease;
+}
+
+.terminal-box:hover {
+  box-shadow: 0 0 15px rgba(0,255,65,0.4);
+  transform: translateY(-2px);
 }
 
 .terminal-box-amber {
   background: #12100a;
   border: 1px solid #ffcc00;
   box-shadow: 0 0 8px rgba(255,204,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.terminal-box-amber:hover {
+  box-shadow: 0 0 15px rgba(255,204,0,0.4);
+  transform: translateY(-2px);
 }
 
 /* Grid Background */
@@ -62,6 +74,7 @@ body {
 .cursor-blink::after {
   content: "█";
   animation: blink 1s step-end infinite;
+  color: #00ff41;
 }
 
 @keyframes blink {
@@ -73,3 +86,83 @@ body {
 .glow {
   text-shadow: 0 0 8px currentColor;
 }
+
+/* Typewriter effect */
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid #00ff41;
+  white-space: nowrap;
+  animation: typing 2s steps(20, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #00ff41 }
+}
+
+/* Glitch effect on hover */
+.glitch-hover:hover {
+  animation: glitch 0.3s ease infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0) }
+  20% { transform: translate(-2px, 2px) }
+  40% { transform: translate(-2px, -2px) }
+  60% { transform: translate(2px, 2px) }
+  80% { transform: translate(2px, -2px) }
+  100% { transform: translate(0) }
+}
+
+/* Pulse animation */
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Scanline sweep */
+.scanline-sweep::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0,255,65,0.1), transparent);
+  animation: sweep 3s ease-in-out infinite;
+}
+
+@keyframes sweep {
+  0% { left: -100% }
+  100% { left: 100% }
+}
+
+/* Fade in up animation */
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }

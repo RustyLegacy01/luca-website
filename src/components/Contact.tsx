@@ -14,19 +14,18 @@ export default function Contact() {
   return (
     <section id="contact" className="py-12 px-4 sm:px-8 lg:px-16" style={{ color: "#66ff66" }}>
       <div className="max-w-4xl mx-auto">
-        <div className="mb-8" style={{ color: "#66ff66", fontFamily: "monospace", fontSize: "0.875rem" }}>
-          <span>$ </span>
-          <span>./connect.sh</span>
+        <div className="mb-8 fade-in-up" style={{ color: "#66ff66", fontFamily: "monospace", fontSize: "0.875rem" }}>
+          <span className="typewriter">$ ./connect.sh</span>
         </div>
 
-        <div className="terminal-box p-6 mb-6">
+        <div className="terminal-box p-6 mb-6 fade-in-up delay-100">
           <div className="flex items-center justify-between mb-4 pb-4" style={{ borderBottom: "1px solid #1a331a" }}>
             <span style={{ color: "#ffcc00" }}>NETWORK STATUS</span>
-            <span style={{ color: "#00ff41" }}>● CONNECTED</span>
+            <span style={{ color: "#00ff41" }} className="pulse">● CONNECTED</span>
           </div>
 
           <div className="space-y-3">
-            {contactMethods.map((method) => (
+            {contactMethods.map((method, index) => (
               <a
                 key={method.protocol}
                 href={method.href}
@@ -34,7 +33,18 @@ export default function Contact() {
                 rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
                 onMouseEnter={() => setHoveredMethod(method.protocol)}
                 onMouseLeave={() => setHoveredMethod(null)}
-                style={{ border: "1px solid #1a331a", textDecoration: "none", display: "flex", padding: "0.75rem", alignItems: "center", justifyContent: "space-between" }}
+                className="fade-in-up glitch-hover"
+                style={{ 
+                  border: "1px solid #1a331a", 
+                  textDecoration: "none", 
+                  display: "flex", 
+                  padding: "0.75rem", 
+                  alignItems: "center", 
+                  justifyContent: "space-between",
+                  animationDelay: `${0.2 + index * 0.1}s`,
+                  transition: 'all 0.3s ease',
+                  background: hoveredMethod === method.protocol ? 'rgba(0, 255, 65, 0.05)' : 'transparent'
+                }}
               >
                 <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
                   <span style={{ 
@@ -73,9 +83,9 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="terminal-box-amber p-6">
+        <div className="terminal-box-amber p-6 fade-in-up delay-400">
           <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem" }}>
-            <div style={{ color: "#ffcc00", fontSize: "1.5rem" }}>⚡</div>
+            <div style={{ color: "#ffcc00", fontSize: "1.5rem" }} className="pulse">⚡</div>
             <div>
               <h3 style={{ color: "#ffcc00", fontFamily: "monospace", fontWeight: "bold", marginBottom: "0.5rem" }}>
                 OPEN FOR OPPORTUNITIES
@@ -96,6 +106,7 @@ export default function Contact() {
                   textDecoration: "none",
                   fontSize: "0.875rem"
                 }}
+                className="hover:glow transition-all duration-200"
               >
                 <span>$</span>
                 <span>send_email</span>

@@ -19,12 +19,11 @@ export default function About() {
   return (
     <section id="about" className="py-12 px-4 sm:px-8 lg:px-16" style={{ color: "#66ff66" }}>
       <div className="max-w-4xl mx-auto">
-        <div className="mb-8" style={{ color: "#66ff66", fontFamily: "monospace", fontSize: "0.875rem" }}>
-          <span>$ </span>
-          <span>cat about.txt</span>
+        <div className="mb-8 fade-in-up" style={{ color: "#66ff66", fontFamily: "monospace", fontSize: "0.875rem" }}>
+          <span className="typewriter">$ cat about.txt</span>
         </div>
 
-        <div className="terminal-box p-6 mb-8">
+        <div className="terminal-box p-6 mb-8 fade-in-up delay-100">
           <div className="flex items-center gap-2 mb-4 pb-4" style={{ borderBottom: "1px solid #1a331a" }}>
             <span style={{ color: "#ffcc00" }}>FILE:</span>
             <span style={{ color: "#00ffff" }}>profile.dat</span>
@@ -32,8 +31,12 @@ export default function About() {
           </div>
 
           <div style={{ fontFamily: "monospace", fontSize: "0.875rem" }}>
-            {aboutData.map((item) => (
-              <div key={item.key} className="flex gap-4 mb-2">
+            {aboutData.map((item, index) => (
+              <div 
+                key={item.key} 
+                className="flex gap-4 mb-2 fade-in-up"
+                style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+              >
                 <span style={{ color: "#66ff66", width: "6rem" }}>{item.key}:</span>
                 <span style={{ color: item.color }}>{item.value}</span>
               </div>
@@ -41,7 +44,7 @@ export default function About() {
           </div>
         </div>
 
-        <div className="terminal-box-amber p-6 mb-8">
+        <div className="terminal-box-amber p-6 mb-8 fade-in-up delay-300">
           <div style={{ color: "#ffcc00", fontFamily: "monospace", fontSize: "0.875rem", lineHeight: "1.6" }}>
             <span style={{ color: "#66ff66" }}>{"//"}</span> THE_STORY
             <br /><br />
@@ -54,11 +57,21 @@ export default function About() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {modules.map((mod) => (
-            <div key={mod.id} className="terminal-box p-4">
+          {modules.map((mod, index) => (
+            <div 
+              key={mod.id} 
+              className="terminal-box p-4 fade-in-up glitch-hover"
+              style={{ animationDelay: `${0.4 + index * 0.1}s` }}
+            >
               <div className="flex items-center justify-between mb-2">
                 <span style={{ color: "#66ff66", fontSize: "0.75rem" }}>{mod.id}</span>
-                <span style={{ color: mod.status === "ACTIVE" || mod.status === "RUNNING" ? "#00ff41" : "#ffcc00", fontSize: "0.75rem" }}>
+                <span 
+                  className="pulse"
+                  style={{ 
+                    color: mod.status === "ACTIVE" || mod.status === "RUNNING" ? "#00ff41" : "#ffcc00", 
+                    fontSize: "0.75rem" 
+                  }}
+                >
                   [{mod.status}]
                 </span>
               </div>
