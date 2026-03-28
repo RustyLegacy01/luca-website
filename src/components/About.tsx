@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+
 
 const aboutData = [
   { key: "ROLE", value: "CS & Economics Student", color: "#00ff41" },
@@ -36,12 +36,10 @@ export default function About() {
   return (
     <section id="about" className="py-24 px-4 sm:px-8 lg:px-16" style={{ color: "#66ff66" }}>
       <div className="max-w-4xl mx-auto">
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-8">
-          <div style={{ color: "#66ff66", fontFamily: "monospace", fontSize: "0.875rem" }}>
-            <span>$ </span>
-            <span>cat about.txt</span>
-          </div>
-        </motion.div>
+        <div className="mb-8" style={{ color: "#66ff66", fontFamily: "monospace", fontSize: "0.875rem" }}>
+          <span>$ </span>
+          <span>cat about.txt</span>
+        </div>
 
         <div className="terminal-box p-6 mb-8">
           <div className="flex items-center gap-2 mb-4 pb-4" style={{ borderBottom: "1px solid #1a331a" }}>
@@ -52,45 +50,30 @@ export default function About() {
 
           <div style={{ fontFamily: "monospace", fontSize: "0.875rem" }}>
             {aboutData.map((item, index) => (
-              <motion.div
+              <div
                 key={item.key}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: visibleLines > index ? 1 : 0, x: visibleLines > index ? 0 : -20 }}
-                transition={{ duration: 0.3 }}
                 className="flex gap-4 mb-2"
+                style={{ opacity: visibleLines > index ? 1 : 0, transform: visibleLines > index ? 'translateX(0)' : 'translateX(-20px)', transition: 'all 0.3s' }}
               >
                 <span style={{ color: "#66ff66", width: "5rem" }}>{item.key}:</span>
                 <span style={{ color: item.color }}>{item.value}</span>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="terminal-box-amber p-6 mb-8"
-        >
+        <div className="terminal-box-amber p-6 mb-8">
           <div style={{ color: "#ffcc00", fontFamily: "monospace", fontSize: "0.875rem", lineHeight: "1.6" }}>
             <span style={{ color: "#66ff66" }}>{"//"}</span> INTERSECTION_POINT
             <br /><br />
             Student with a unique blend. The future belongs to those who
             understand both technology and economics.
           </div>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {modules.map((mod, index) => (
-            <motion.div
-              key={mod.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="terminal-box p-4"
-            >
+          {modules.map((mod) => (
+            <div key={mod.id} className="terminal-box p-4">
               <div className="flex items-center justify-between mb-2">
                 <span style={{ color: "#66ff66", fontSize: "0.75rem" }}>{mod.id}</span>
                 <span style={{ color: mod.status === "ACTIVE" || mod.status === "RUNNING" ? "#00ff41" : "#ffcc00", fontSize: "0.75rem" }}>
@@ -101,7 +84,7 @@ export default function About() {
                 {mod.name}
               </h3>
               <p style={{ color: "#66ff66", fontSize: "0.875rem" }}>{mod.desc}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

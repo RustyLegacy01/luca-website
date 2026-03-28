@@ -48,52 +48,34 @@ export default function Hero() {
   }, [showPrompt]);
 
   return (
-    <section
-      id="hero"
-      className="min-h-screen flex flex-col justify-center px-4 sm:px-8 lg:px-16 py-20"
-    >
+    <section id="hero" className="min-h-screen flex flex-col justify-center px-4 sm:px-8 lg:px-16 py-20">
       <div className="max-w-4xl mx-auto w-full">
-        {/* Boot Sequence */}
         <div className="terminal-box p-6 mb-8 font-mono text-sm" style={{ color: '#88cc88' }}>
           {bootText.map((line, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              style={{ color: line.includes("OK") ? '#39ff14' : '#88cc88' }}
-            >
+            <div key={index} style={{ color: line.includes("OK") ? '#00ff41' : '#88cc88' }}>
               {line.includes("OK") ? `[OK] ${line.replace("... OK", "")}` : `> ${line}`}
-            </motion.div>
+            </div>
           ))}
           {showPrompt && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="mt-4"
-            >
-              <span style={{ color: '#ffaa00' }}>luca@terminal</span>
+            <div className="mt-4">
+              <span style={{ color: '#ffcc00' }}>luca@terminal</span>
               <span style={{ color: '#88cc88' }}>:</span>
-              <span style={{ color: '#00ddff' }}>~</span>
+              <span style={{ color: '#00ffff' }}>~</span>
               <span style={{ color: '#88cc88' }}>$</span>{" "}
-              <span className="glow" style={{ color: '#39ff14', fontSize: '1.5rem', fontWeight: 'bold' }}>
+              <span className="glow" style={{ color: '#00ff41', fontSize: '1.5rem', fontWeight: 'bold' }}>
                 {typedName}
               </span>
-              <span className="cursor-blink" style={{ color: '#39ff14' }} />
-            </motion.div>
+              <span className="cursor-blink" style={{ color: '#00ff41' }} />
+            </div>
           )}
         </div>
 
-        {/* Main Content */}
         {showContent && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <div className="terminal-box p-6 mb-6" style={{ color: '#88cc88' }}>
               <div className="flex items-center gap-2 mb-4 text-sm" style={{ color: '#88cc88' }}>
                 <span>FILE:</span>
-                <span style={{ color: '#00ddff' }}>profile.json</span>
+                <span style={{ color: '#00ffff' }}>profile.json</span>
                 <span className="ml-auto">STATUS: ACTIVE</span>
               </div>
               
@@ -107,64 +89,28 @@ export default function Hero() {
               </pre>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="flex flex-wrap gap-4"
-            >
-              <a
-                href="#contact"
-                className="terminal-box px-6 py-3 transition-all duration-200 group"
-                style={{ color: '#88cc88', textDecoration: 'none' }}
-              >
-                <span style={{ color: '#ffaa00' }}>$</span>{" "}
-                <span className="group-hover:glow" style={{ color: '#39ff14' }}>./connect.sh</span>
+            <div className="flex flex-wrap gap-4">
+              <a href="#contact" className="terminal-box px-6 py-3 transition-all duration-200 group" style={{ color: '#88cc88', textDecoration: 'none' }}>
+                <span style={{ color: '#ffcc00' }}>$</span>{" "}
+                <span className="group-hover:glow" style={{ color: '#00ff41' }}>./connect.sh</span>
               </a>
-              <a
-                href="#about"
-                className="terminal-box px-6 py-3 transition-all duration-200"
-                style={{ color: '#88cc88', textDecoration: 'none' }}
-              >
+              <a href="#about" className="terminal-box px-6 py-3 transition-all duration-200" style={{ color: '#88cc88', textDecoration: 'none' }}>
                 <span style={{ color: '#88cc88' }}>$</span>{" "}
                 <span style={{ color: '#88cc88' }}>cat about.txt</span>
               </a>
-            </motion.div>
+            </div>
 
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="mt-8 flex gap-6"
-              style={{ color: '#88cc88' }}
-            >
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: '#88cc88', textDecoration: 'none' }}
-                className="hover:glow"
-              >
+            <div className="mt-8 flex gap-6" style={{ color: '#88cc88' }}>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" style={{ color: '#88cc88', textDecoration: 'none' }} className="hover:glow">
                 [github]
               </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: '#88cc88', textDecoration: 'none' }}
-                className="hover:glow-cyan"
-              >
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style={{ color: '#88cc88', textDecoration: 'none' }} className="hover:glow-cyan">
                 [linkedin]
               </a>
-              <a
-                href="mailto:luca@example.com"
-                style={{ color: '#88cc88', textDecoration: 'none' }}
-                className="hover:glow-amber"
-              >
+              <a href="mailto:luca@example.com" style={{ color: '#88cc88', textDecoration: 'none' }} className="hover:glow-amber">
                 [email]
               </a>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </div>

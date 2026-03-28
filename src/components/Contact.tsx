@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 
 const contactMethods = [
   { protocol: "EMAIL", address: "luca@example.com", href: "mailto:luca@example.com", status: "ONLINE", latency: "<50ms" },
@@ -15,12 +14,10 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 px-4 sm:px-8 lg:px-16" style={{ color: "#66ff66" }}>
       <div className="max-w-4xl mx-auto">
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-8">
-          <div style={{ color: "#66ff66", fontFamily: "monospace", fontSize: "0.875rem" }}>
-            <span>$ </span>
-            <span>./connect.sh</span>
-          </div>
-        </motion.div>
+        <div className="mb-8" style={{ color: "#66ff66", fontFamily: "monospace", fontSize: "0.875rem" }}>
+          <span>$ </span>
+          <span>./connect.sh</span>
+        </div>
 
         <div className="terminal-box p-6 mb-6">
           <div className="flex items-center justify-between mb-4 pb-4" style={{ borderBottom: "1px solid #1a331a" }}>
@@ -29,16 +26,12 @@ export default function Contact() {
           </div>
 
           <div className="space-y-3">
-            {contactMethods.map((method, index) => (
-              <motion.a
+            {contactMethods.map((method) => (
+              <a
                 key={method.protocol}
                 href={method.href}
                 target={method.href.startsWith("http") ? "_blank" : undefined}
                 rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
                 onMouseEnter={() => setHoveredMethod(method.protocol)}
                 onMouseLeave={() => setHoveredMethod(null)}
                 style={{ border: "1px solid #1a331a", textDecoration: "none", display: "flex", padding: "0.75rem", alignItems: "center", justifyContent: "space-between" }}
@@ -75,18 +68,12 @@ export default function Contact() {
                     [CLICK TO CONNECT]
                   </div>
                 </div>
-              </motion.a>
+              </a>
             ))}
           </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="terminal-box-amber p-6"
-        >
+        <div className="terminal-box-amber p-6">
           <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem" }}>
             <div style={{ color: "#ffcc00", fontSize: "1.5rem" }}>⚡</div>
             <div>
@@ -114,7 +101,7 @@ export default function Contact() {
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

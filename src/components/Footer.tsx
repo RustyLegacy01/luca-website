@@ -1,19 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="py-8 px-4 sm:px-8 lg:px-16" style={{ borderTop: "1px solid #1a331a" }}>
       <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="terminal-box p-4"
-        >
+        <div className="terminal-box p-4">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4" style={{ fontFamily: "monospace", fontSize: "0.75rem" }}>
             <div style={{ color: "#66ff66" }}>
               <span style={{ color: "#ffcc00" }}>SYS:</span> TERMINAL_v1.0.4
@@ -53,7 +46,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );

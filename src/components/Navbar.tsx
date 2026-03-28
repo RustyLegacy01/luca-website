@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { name: "about", href: "#about" },
@@ -10,30 +10,22 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     const updateTime = () => {
       const now = new Date();
       setCurrentTime(now.toLocaleTimeString("en-US", { hour12: false, hour: "2-digit", minute: "2-digit", second: "2-digit" }));
     };
-    window.addEventListener("scroll", handleScroll);
     updateTime();
     const interval = setInterval(updateTime, 1000);
-    return () => { window.removeEventListener("scroll", handleScroll); clearInterval(interval); };
+    return () => clearInterval(interval);
   }, []);
 
   return (
     <>
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-        className={`fixed top-0 left-0 right-0 z-50 ${isScrolled ? "terminal-box border-t-0 border-l-0 border-r-0" : ""}`}
-      >
+      <header className="fixed top-0 left-0 right-0 z-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14 sm:h-16" style={{ fontFamily: "monospace", fontSize: "0.875rem" }}>
             <a href="#hero" style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#00ff41", textDecoration: "none" }}>
@@ -65,11 +57,11 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </motion.header>
+      </header>
 
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.2 }} className="fixed inset-0 z-40 sm:hidden" style={{ top: "3.5rem" }}>
+          <div className="fixed inset-0 z-40 sm:hidden" style={{ top: "3.5rem" }}>
             <div className="terminal-box m-4 p-4">
               <nav style={{ display: "flex", flexDirection: "column", gap: "0.5rem", fontFamily: "monospace" }}>
                 {navLinks.map((link, index) => (
@@ -83,7 +75,7 @@ export default function Navbar() {
                 </a>
               </nav>
             </div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>
