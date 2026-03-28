@@ -2,12 +2,12 @@
 
 const bootText = [
   "BIOS DATE 03/28/26 10:47:22 VER 1.0.4",
-  "CPU: NEURAL_PROCESSOR_X1 @ 4.2GHz",
-  "MEM: 64TB NEURAL RAM... OK",
-  "GPU: QUANTUM_RENDERER... OK",
+  "CPU: SELF_HOSTED_X1 @ 4.2GHz",
+  "MEM: HOMELAB_SERVER_STACK... OK",
+  "GPU: BASKETBALL_RENDERER... OK",
   "LOADING KERNEL...",
   "MOUNTING FILESYSTEMS...",
-  "INITIALIZING USER PROFILE...",
+  "SPINNING UP GAME_SERVERS...",
   "luca@system:~$ whoami",
 ];
 
@@ -43,10 +43,10 @@ export default function Hero() {
             
             <pre className="font-mono text-sm overflow-x-auto" style={{ color: '#88cc88' }}>
               <code>{`{
-  "role": "CS & Economics Student",
-  "focus": ["Technology", "Markets", "Trading"],
-  "mission": "Bridging code and markets",
-  "status": "Building the future..."
+  "role": "Year 13 Student @ BSN",
+  "focus": ["CS", "Economics", "Server Hosting", "Game Servers"],
+  "mission": "Building things that run 24/7",
+  "status": "I love life"
 }`}</code>
             </pre>
           </div>
@@ -63,13 +63,13 @@ export default function Hero() {
           </div>
 
           <div className="mt-8 flex gap-6" style={{ color: '#88cc88' }}>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" style={{ color: '#88cc88', textDecoration: 'none' }} className="hover:glow">
+            <a href="https://github.com/RustyLegacy01" target="_blank" rel="noopener noreferrer" style={{ color: '#88cc88', textDecoration: 'none' }} className="hover:glow">
               [github]
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style={{ color: '#88cc88', textDecoration: 'none' }} className="hover:glow-cyan">
+            <a href="https://www.linkedin.com/in/luca-noble-6ab1992b3/" target="_blank" rel="noopener noreferrer" style={{ color: '#88cc88', textDecoration: 'none' }} className="hover:glow-cyan">
               [linkedin]
             </a>
-            <a href="mailto:luca@example.com" style={{ color: '#88cc88', textDecoration: 'none' }} className="hover:glow-amber">
+            <a href="mailto:rustyluca1@gmail.com" style={{ color: '#88cc88', textDecoration: 'none' }} className="hover:glow-amber">
               [email]
             </a>
           </div>

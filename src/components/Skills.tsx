@@ -1,10 +1,10 @@
 "use client";
 
 const skillModules = [
-  { category: "PROGRAMMING", skills: ["Python", "JavaScript", "TypeScript", "C++", "SQL", "HTML/CSS"], color: "#00ff41" },
-  { category: "TECH_STACK", skills: ["React", "Next.js", "Node.js", "Git", "Linux", "Docker"], color: "#00ffff" },
-  { category: "FINANCE", skills: ["Technical Analysis", "Market Research", "Risk Mgmt", "Portfolio Theory", "Data Analysis", "Excel"], color: "#ffcc00" },
-  { category: "SYSTEM", skills: ["Problem Solving", "Analysis", "Communication", "Teamwork", "Time Mgmt", "Adaptability"], color: "#66ff66" },
+  { category: "LANGUAGES", skills: ["Python (primary)", "Java", "C", "C++"], color: "#00ff41" },
+  { category: "SYSTEMS", skills: ["Linux", "Server Management", "Game Hosting", "Homelab"], color: "#00ffff" },
+  { category: "FINANCE", skills: ["Macro Analysis", "Long-term Investing", "Strategy", "Market Research"], color: "#ffcc00" },
+  { category: "LIFE", skills: ["Basketball", "Experimenting", "Learning", "Server Hoarding"], color: "#66ff66" },
 ];
 
 export default function Skills() {
@@ -49,10 +49,10 @@ export default function Skills() {
 
           <div style={{ fontFamily: "monospace", fontSize: "0.75rem" }}>
             {[
-              { name: "Coding", value: 85, color: "#00ff41" },
-              { name: "Analysis", value: 78, color: "#00ffff" },
-              { name: "Trading", value: 70, color: "#ffcc00" },
-              { name: "Learning", value: 95, color: "#66ff66" },
+              { name: "Python", value: 95, color: "#00ff41" },
+              { name: "Server Ops", value: 85, color: "#00ffff" },
+              { name: "Basketball", value: 80, color: "#ffcc00" },
+              { name: "Learning", value: 99, color: "#66ff66" },
             ].map((stat) => (
               <div key={stat.name} style={{ marginBottom: "0.75rem" }}>
                 <div className="flex justify-between mb-1">

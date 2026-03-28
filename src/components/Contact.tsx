@@ -3,9 +3,9 @@
 import { useState } from "react";
 
 const contactMethods = [
-  { protocol: "EMAIL", address: "luca@example.com", href: "mailto:luca@example.com", status: "ONLINE", latency: "<50ms" },
-  { protocol: "GITHUB", address: "github.com/luca", href: "https://github.com", status: "ACTIVE", latency: "24ms" },
-  { protocol: "LINKEDIN", address: "linkedin.com/in/luca", href: "https://linkedin.com", status: "ONLINE", latency: "32ms" },
+  { protocol: "EMAIL", address: "rustyluca1@gmail.com", href: "mailto:rustyluca1@gmail.com", status: "ONLINE", latency: "<50ms" },
+  { protocol: "GITHUB", address: "github.com/RustyLegacy01", href: "https://github.com/RustyLegacy01", status: "ACTIVE", latency: "24ms" },
+  { protocol: "LINKEDIN", address: "linkedin.com/in/luca-noble", href: "https://www.linkedin.com/in/luca-noble-6ab1992b3/", status: "ONLINE", latency: "32ms" },
 ];
 
 export default function Contact() {
@@ -78,13 +78,14 @@ export default function Contact() {
             <div style={{ color: "#ffcc00", fontSize: "1.5rem" }}>⚡</div>
             <div>
               <h3 style={{ color: "#ffcc00", fontFamily: "monospace", fontWeight: "bold", marginBottom: "0.5rem" }}>
-                READY FOR COLLABORATION
+                OPEN FOR OPPORTUNITIES
               </h3>
               <p style={{ color: "#66ff66", fontSize: "0.875rem", marginBottom: "1rem" }}>
-                Open to internships, projects, and opportunities.
+                Year 13 student looking for internships, freelance work, and networking.
+                Especially interested in server ops, game hosting, and anything that runs 24/7.
               </p>
               <a
-                href="mailto:luca@example.com"
+                href="mailto:rustyluca1@gmail.com"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",

@@ -2,19 +2,19 @@
 
 import { useState, useEffect } from "react";
 
-
 const aboutData = [
-  { key: "ROLE", value: "CS & Economics Student", color: "#00ff41" },
-  { key: "FOCUS", value: "[Technology, Markets, Trading]", color: "#00ffff" },
-  { key: "STATUS", value: "University-bound", color: "#ffcc00" },
-  { key: "MISSION", value: "Bridging code and markets", color: "#00ff41" },
+  { key: "ROLE", value: "Year 13 Student", color: "#00ff41" },
+  { key: "SCHOOL", value: "British School in the Netherlands", color: "#00ffff" },
+  { key: "FOCUS", value: "[CS, Economics, Server Hosting]", color: "#ffcc00" },
+  { key: "STATUS", value: "Building game servers & homelabs", color: "#00ff41" },
+  { key: "MISSION", value: "Things that run 24/7", color: "#00ffff" },
 ];
 
 const modules = [
-  { id: "CS_CORE", name: "Computer Science", desc: "Software engineering, algorithms", status: "ACTIVE" },
-  { id: "FIN_MOD", name: "Trading & Finance", desc: "Markets, strategies, analysis", status: "ACTIVE" },
-  { id: "EDU_SYS", name: "Education", desc: "University next year", status: "PENDING" },
-  { id: "LRN_ENG", name: "Learning Engine", desc: "Always exploring", status: "RUNNING" },
+  { id: "CS_CORE", name: "Computer Science", desc: "Python-first dev. Java & C(++). Love experimenting.", status: "ACTIVE" },
+  { id: "SRV_OPS", name: "Server Operations", desc: "Self-hosted game servers. Homelab enthusiast.", status: "ACTIVE" },
+  { id: "ECO_FIN", name: "Economics & Investing", desc: "Macro analysis. Long-term strategy. Markets.", status: "ACTIVE" },
+  { id: "BKB_ALL", name: "Basketball", desc: "On the court when not in the terminal.", status: "RUNNING" },
 ];
 
 export default function About() {
@@ -55,7 +55,7 @@ export default function About() {
                 className="flex gap-4 mb-2"
                 style={{ opacity: visibleLines > index ? 1 : 0, transform: visibleLines > index ? 'translateX(0)' : 'translateX(-20px)', transition: 'all 0.3s' }}
               >
-                <span style={{ color: "#66ff66", width: "5rem" }}>{item.key}:</span>
+                <span style={{ color: "#66ff66", width: "6rem" }}>{item.key}:</span>
                 <span style={{ color: item.color }}>{item.value}</span>
               </div>
             ))}
@@ -64,10 +64,13 @@ export default function About() {
 
         <div className="terminal-box-amber p-6 mb-8">
           <div style={{ color: "#ffcc00", fontFamily: "monospace", fontSize: "0.875rem", lineHeight: "1.6" }}>
-            <span style={{ color: "#66ff66" }}>{"//"}</span> INTERSECTION_POINT
+            <span style={{ color: "#66ff66" }}>{"//"}</span> THE_STORY
             <br /><br />
-            Student with a unique blend. The future belongs to those who
-            understand both technology and economics.
+            Built a game hosting company. Still running servers as a hobby.
+            Love the intersection of code and systems that stay up.
+            Long-term investor, macro thinker, basketball player.
+            <br /><br />
+            I love life.
           </div>
         </div>
 
