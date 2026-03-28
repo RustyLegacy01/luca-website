@@ -12,7 +12,7 @@ export default function Contact() {
   const [hoveredMethod, setHoveredMethod] = useState<string | null>(null);
 
   return (
-    <section id="contact" className="py-24 px-4 sm:px-8 lg:px-16" style={{ color: "#66ff66" }}>
+    <section id="contact" className="py-12 px-4 sm:px-8 lg:px-16" style={{ color: "#66ff66" }}>
       <div className="max-w-4xl mx-auto">
         <div className="mb-8" style={{ color: "#66ff66", fontFamily: "monospace", fontSize: "0.875rem" }}>
           <span>$ </span>

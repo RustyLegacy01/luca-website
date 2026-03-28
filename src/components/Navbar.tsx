@@ -36,7 +36,7 @@ export default function Navbar() {
             </a>
 
             <div style={{ color: "#66ff66" }} className="hidden sm:block">
-              [{currentTime}]
+              {currentTime ? `[${currentTime}]` : "[--:--:--]"}
             </div>
 
             <nav className="hidden sm:flex items-center gap-1">

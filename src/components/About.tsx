@@ -1,7 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
-
 const aboutData = [
   { key: "ROLE", value: "Year 13 Student", color: "#00ff41" },
   { key: "SCHOOL", value: "British School in the Netherlands", color: "#00ffff" },
@@ -18,23 +16,8 @@ const modules = [
 ];
 
 export default function About() {
-  const [visibleLines, setVisibleLines] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setVisibleLines((prev) => {
-        if (prev >= 6) {
-          clearInterval(interval);
-          return prev;
-        }
-        return prev + 1;
-      });
-    }, 200);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <section id="about" className="py-24 px-4 sm:px-8 lg:px-16" style={{ color: "#66ff66" }}>
+    <section id="about" className="py-12 px-4 sm:px-8 lg:px-16" style={{ color: "#66ff66" }}>
       <div className="max-w-4xl mx-auto">
         <div className="mb-8" style={{ color: "#66ff66", fontFamily: "monospace", fontSize: "0.875rem" }}>
           <span>$ </span>
@@ -49,12 +32,8 @@ export default function About() {
           </div>
 
           <div style={{ fontFamily: "monospace", fontSize: "0.875rem" }}>
-            {aboutData.map((item, index) => (
-              <div
-                key={item.key}
-                className="flex gap-4 mb-2"
-                style={{ opacity: visibleLines > index ? 1 : 0, transform: visibleLines > index ? 'translateX(0)' : 'translateX(-20px)', transition: 'all 0.3s' }}
-              >
+            {aboutData.map((item) => (
+              <div key={item.key} className="flex gap-4 mb-2">
                 <span style={{ color: "#66ff66", width: "6rem" }}>{item.key}:</span>
                 <span style={{ color: item.color }}>{item.value}</span>
               </div>
